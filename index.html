@@ -1,0 +1,1074 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新思想教育 - 专业家教服务</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- EmailJS Library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#f97316',
+                        light: '#f8fafc',
+                        dark: '#0f172a'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .transition-all-300 {
+                transition: all 0.3s ease;
+            }
+            .bg-gradient-primary {
+                background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            }
+            .bg-gradient-secondary {
+                background: linear-gradient(135deg, #f97316 0%, #fdba74 100%);
+            }
+        }
+        
+        /* 自定义样式 */
+        .hero-section {
+            background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(30, 64, 175, 0.8)), url('https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/458b371532074c509f06d22c470425db~tplv-a9rns2rl98-image.image?rcl=2025111816231218D410E0003EC817B64B&rk3s=8e244e95&rrcfp=f06b921b&x-expires=1766046246&x-signature=zn%2B%2FuDLIoJ3Ix2UwjAVBFjrp9Ac%3D');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .teacher-card:hover .teacher-overlay {
+            opacity: 1;
+        }
+        
+        .form-input:focus {
+            border-color: #1e40af;
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.2);
+        }
+        
+        .form-input.error {
+            border-color: #ef4444;
+        }
+        
+        .form-input.success {
+            border-color: #22c55e;
+        }
+        
+        .form-message {
+            display: none;
+        }
+        
+        .form-message.error {
+            display: block;
+            color: #ef4444;
+        }
+        
+        .form-message.success {
+            display: block;
+            color: #22c55e;
+        }
+        
+        .submit-button {
+            transition: all 0.3s ease;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .submit-button:active {
+            transform: translateY(0);
+        }
+        
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #1e40af;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .success-animation {
+            display: none;
+            text-align: center;
+        }
+        
+        .success-animation i {
+            font-size: 48px;
+            color: #22c55e;
+            animation: scaleIn 0.5s ease-in-out;
+        }
+        
+        @keyframes scaleIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/53e1dab9b74e45b0932c26774f158f39~tplv-a9rns2rl98-image.image?rcl=2025111816231218D410E0003EC817B64B&rk3s=8e244e95&rrcfp=f06b921b&x-expires=1766046245&x-signature=vWZrfntsHTTff77aRHTS%2BCnBUpo%3D" alt="新思想教育" class="h-12">
+                <h1 class="ml-3 text-xl font-bold text-primary">新思想教育</h1>
+            </div>
+            
+            <!-- 桌面导航 -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-primary transition-all-300">首页</a>
+                <a href="#about" class="text-gray-700 hover:text-primary transition-all-300">关于我们</a>
+                <a href="#courses" class="text-gray-700 hover:text-primary transition-all-300">课程体系</a>
+                <a href="#teachers" class="text-gray-700 hover:text-primary transition-all-300">师资力量</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary transition-all-300">联系我们</a>
+                <a href="#form" class="bg-secondary text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-all-300">免费咨询</a>
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+                    <i class="fa fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden bg-white shadow-lg absolute w-full left-0 top-full transform -translate-y-full opacity-0 transition-all duration-300 invisible">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="#home" class="text-gray-700 hover:text-primary py-2 transition-all-300">首页</a>
+                <a href="#about" class="text-gray-700 hover:text-primary py-2 transition-all-300">关于我们</a>
+                <a href="#courses" class="text-gray-700 hover:text-primary py-2 transition-all-300">课程体系</a>
+                <a href="#teachers" class="text-gray-700 hover:text-primary py-2 transition-all-300">师资力量</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary py-2 transition-all-300">联系我们</a>
+                <a href="#form" class="bg-secondary text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-all-300 text-center">免费咨询</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="hero-section min-h-screen flex items-center pt-16">
+        <div class="container mx-auto px-4 py-16">
+            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 text-shadow">新思想教育 - 启迪未来</h1>
+                <p class="text-xl md:text-2xl text-white mb-10 text-shadow">专业的家教服务，为孩子提供个性化学习方案，激发学习潜能</p>
+                <div class="flex flex-col md:flex-row justify-center gap-4">
+                    <a href="#form" class="bg-secondary text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-orange-600 transition-all-300">立即咨询</a>
+                    <a href="#courses" class="bg-white text-primary px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-100 transition-all-300">了解课程</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">关于新思想教育</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">我们致力于为学生提供高质量的个性化教育服务，帮助每个孩子发现自己的学习潜能，培养良好的学习习惯和思维方式。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://p3-doubao-search-sign.byteimg.com/labis/be1b3e6f22010d34efc6d5164796a70b~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=RFtFrELzZ5E%2FLA4Jmzjcz%2Bwb1Ck%3D" alt="教学场景" class="rounded-lg shadow-xl w-full">
+                </div>
+                
+                <div data-aos="fade-left">
+                    <h3 class="text-2xl font-bold text-primary mb-6">我们的教育理念</h3>
+                    <p class="text-gray-700 mb-6">新思想教育秉承"以学生为中心"的教育理念，注重培养学生的综合素质和创新能力。我们相信每个孩子都有自己独特的学习方式和潜力，通过个性化的教学方法，激发孩子的学习兴趣和内在动力。</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-primary text-white rounded-full p-2 mr-4">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">个性化教学</h4>
+                                <p class="text-gray-600">根据学生的学习特点和需求，制定专属学习计划</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary text-white rounded-full p-2 mr-4">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">专业师资团队</h4>
+                                <p class="text-gray-600">严格筛选的优秀教师，具备丰富的教学经验和专业知识</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary text-white rounded-full p-2 mr-4">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">全面发展</h4>
+                                <p class="text-gray-600">注重学生的学习能力、思维能力和综合素质的全面培养</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 课程体系 -->
+    <section id="courses" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">精品课程体系</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">我们提供全面的课程体系，覆盖小学、初中和高中各个学科，满足不同学生的学习需求。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 课程卡片 1 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden course-card transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-be4g95zd3a/903037300906131553~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=xpfLsQ5CsDMZ6DAU0VXYwfCyce4%3D" alt="小学课程" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-3">小学课程</h3>
+                        <p class="text-gray-600 mb-4">针对小学生的学习特点，培养良好的学习习惯，夯实基础知识，激发学习兴趣。</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fa fa-angle-right text-secondary mr-2"></i>
+                                <span>语文阅读理解与写作</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-angle-right text-secondary mr-2"></i>
+                                <span>数学思维训练</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-angle-right text-secondary mr-2"></i>
+                                <span>英语启蒙与口语</span>
+                            </li>
+                        </ul>
+                        <a href="course-details.html#middle-school" class="inline-block bg-primary text-white px-6 py-2 rounded-full hover:bg-blue-800 transition-all-300">了解详情</a>
+                    </div>
+                </div>
+                
+                <!-- 课程卡片 2 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden course-card transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://p3-doubao-search-sign.byteimg.com/labis/image/f5070693bec6d1a6c3cf799c28cc3b37~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=nJXVhMqRUJx%2BM1KuCAeWRJanLow%3D" alt="初中课程" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-3">初中课程</h3>
+                        <p class="text-gray-600 mb-4">针对初中各学科知识难点，帮助学生建立系统的知识体系，提高学习效率和成绩。</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fa fa-angle-right text-secondary mr-2"></i>
+                                <span>数学代数与几何</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-angle-right text-secondary mr-2"></i>
+                                <span>物理基础概念与实验</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-angle-right text-secondary mr-2"></i>
+                                <span>化学元素与反应</span>
+                            </li>
+                        </ul>
+                        <a href="course-details.html#middle-school" class="inline-block bg-primary text-white px-6 py-2 rounded-full hover:bg-blue-800 transition-all-300">了解详情</a>
+                    </div>
+                </div>
+                
+                <!-- 课程卡片 3 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden course-card transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://p3-doubao-search-sign.byteimg.com/labis/image/361581421b49943905687430fb099845~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=lll1efQf2eHolD3rGU3qcPXpf2Q%3D" alt="高中课程" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-3">高中课程</h3>
+                        <p class="text-gray-600 mb-4">针对高中阶段的学习需求，强化重难点知识，提高应试能力，为高考做好充分准备。</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fa fa-angle-right text-secondary mr-2"></i>
+                                <span>数学函数与导数</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-angle-right text-secondary mr-2"></i>
+                                <span>物理电磁学与力学</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-angle-right text-secondary mr-2"></i>
+                                <span>化学有机与无机</span>
+                            </li>
+                        </ul>
+                        <a href="course-details.html#high-school" class="inline-block bg-primary text-white px-6 py-2 rounded-full hover:bg-blue-800 transition-all-300">了解详情</a>
+                    </div>
+                </div>
+                
+                <!-- 课程卡片 4 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden course-card transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://p3-doubao-search-sign.byteimg.com/labis/89b1959b0afe3557b05cbd026a21f3fe~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779010295&amp;x-signature=fvnzOOCi981eNcIKofVpKMYQopw%3D" alt="艺术生课程" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-3">艺术生课程</h3>
+                        <p class="text-gray-600 mb-4">专为艺术生设计的文化课和专业课辅导，帮助艺术生平衡专业学习和文化课成绩。</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fa fa-angle-right text-secondary mr-2"></i>
+                                <span>艺术生文化课冲刺</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-angle-right text-secondary mr-2"></i>
+                                <span>美术专业培训</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-angle-right text-secondary mr-2"></i>
+                                <span>音乐专业培训</span>
+                            </li>
+                        </ul>
+                        <a href="course-details.html#art-student" class="inline-block bg-primary text-white px-6 py-2 rounded-full hover:bg-blue-800 transition-all-300">了解详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 师资力量 -->
+    <section id="teachers" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">优秀师资团队</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">我们的教师团队由经验丰富、专业素养高的优秀教师组成，致力于为学生提供最优质的教育服务。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 教师卡片 1 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden teacher-card relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-be4g95zd3a/1048492381446995975~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=%2FJowc%2B7cLe7YEJR407JFV56mKE0%3D" alt="张老师" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="text-xl font-bold text-primary">张老师</h3>
+                        <p class="text-gray-600">数学教研组长</p>
+                    </div>
+                    <div class="teacher-overlay absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300">
+                        <h3 class="text-xl font-bold text-white mb-2">张老师</h3>
+                        <p class="text-white text-center mb-4">数学教研组长，拥有10年教学经验，擅长数学思维训练和解题方法指导。</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-white hover:text-secondary transition-all-300">
+                                <i class="fa fa-weixin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-white hover:text-secondary transition-all-300">
+                                <i class="fa fa-envelope text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 教师卡片 2 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden teacher-card relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://p3-doubao-search-sign.byteimg.com/labis/image/7bb1db1345dd89b8a3a398053d940b76~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=JLTn7PCnzBBUZ2PWSaYngtVeOtg%3D" alt="李老师" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="text-xl font-bold text-primary">李老师</h3>
+                        <p class="text-gray-600">语文教师</p>
+                    </div>
+                    <div class="teacher-overlay absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300">
+                        <h3 class="text-xl font-bold text-white mb-2">李老师</h3>
+                        <p class="text-white text-center mb-4">语文教师，汉语言文学硕士，专注于阅读理解和写作教学，教学成果显著。</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-white hover:text-secondary transition-all-300">
+                                <i class="fa fa-weixin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-white hover:text-secondary transition-all-300">
+                                <i class="fa fa-envelope text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 教师卡片 3 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden teacher-card relative" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-be4g95zd3a/909314438561923151~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=%2FJADeKsfy9izKF%2BxMxI%2BzriEgKs%3D" alt="王老师" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="text-xl font-bold text-primary">王老师</h3>
+                        <p class="text-gray-600">英语教师</p>
+                    </div>
+                    <div class="teacher-overlay absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300">
+                        <h3 class="text-xl font-bold text-white mb-2">王老师</h3>
+                        <p class="text-white text-center mb-4">英语教师，英语专业八级，拥有海外留学经验，擅长英语口语和语法教学。</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-white hover:text-secondary transition-all-300">
+                                <i class="fa fa-weixin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-white hover:text-secondary transition-all-300">
+                                <i class="fa fa-envelope text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 教师卡片 4 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden teacher-card relative" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://p3-doubao-search-sign.byteimg.com/tos-cn-i-xv4ileqgde/6b18d767358348dc9f4c95f8207726ae~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=yES3fhyKZe7FzhOEzAcUP0jqRMA%3D" alt="陈老师" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="text-xl font-bold text-primary">陈老师</h3>
+                        <p class="text-gray-600">物理教师</p>
+                    </div>
+                    <div class="teacher-overlay absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300">
+                        <h3 class="text-xl font-bold text-white mb-2">陈老师</h3>
+                        <p class="text-white text-center mb-4">物理教师，物理学博士，擅长物理概念讲解和实验教学，教学风格生动有趣。</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-white hover:text-secondary transition-all-300">
+                                <i class="fa fa-weixin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-white hover:text-secondary transition-all-300">
+                                <i class="fa fa-envelope text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI课程推荐 -->
+    <section class="py-20 bg-gradient-primary text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">AI智能课程推荐</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="max-w-3xl mx-auto">基于您孩子的年级、学习情况和需求，我们的AI系统将为您推荐最适合的课程方案。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/41311d8bac4d42b9a026aaff6439745b~tplv-a9rns2rl98-image.image?rcl=2025111816231218D410E0003EC817B64B&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1766046246&amp;x-signature=gbjPJOwYRpQN6HB2z3hpRutJ4xk%3D" alt="AI课程推荐" class="rounded-lg shadow-xl w-full">
+                </div>
+                
+                <div data-aos="fade-left">
+                    <h3 class="text-2xl font-bold mb-6">如何工作</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-white text-primary rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                <span class="font-bold">1</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">填写基本信息</h4>
+                                <p>提供您孩子的年级、学科强项和弱项等基本信息</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-white text-primary rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                <span class="font-bold">2</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">AI智能分析</h4>
+                                <p>我们的AI系统将分析您孩子的学习情况和需求</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-white text-primary rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                <span class="font-bold">3</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">获取个性化推荐</h4>
+                                <p>系统将为您推荐最适合的课程方案和学习计划</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#form" class="inline-block mt-8 bg-secondary text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-orange-600 transition-all-300">立即体验</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">联系我们</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">如果您有任何疑问或需要了解更多信息，请随时与我们联系。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-map-marker text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-4">地址</h3>
+                    <p class="text-gray-600">北京市海淀区中关村大街1号</p>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-phone text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-4">电话</h3>
+                    <p class="text-gray-600">19231146617（微信同号）</p>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-envelope text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-4">邮箱</h3>
+                    <p class="text-gray-600">1953419050@qq.com</p>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-qrcode text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-4">微信</h3>
+                    <div class="flex justify-center">
+                        <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/99ed1d193027494995ba5545d462913c.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251118165425127A25488C3CDEF4F326&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1764060866&x-signature=Jsvuac0fW3ZrkRZaMKi8vWDf78c%3D" alt="微信二维码" class="w-32 h-32">
+                    </div>
+                    <p class="text-gray-600 mt-2">扫码添加微信</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 表单提交 -->
+    <section id="form" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden" data-aos="fade-up">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="bg-gradient-primary p-8 text-white">
+                        <h2 class="text-3xl font-bold mb-6">免费咨询</h2>
+                        <p class="mb-8">填写以下表单，我们的教育顾问将尽快与您联系，为您提供专业的咨询服务。</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-white text-primary rounded-full p-2 mr-4">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <p>专业教育顾问一对一咨询</p>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white text-primary rounded-full p-2 mr-4">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <p>个性化学习方案定制</p>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white text-primary rounded-full p-2 mr-4">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <p>免费试听课体验</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8">
+                        <form id="contact-form">
+                            <div class="mb-6">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">家长姓名</label>
+                                <input type="text" id="name" name="name" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="请输入您的姓名" required>
+                                <p class="form-message mt-1"></p>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="phone" class="block text-gray-700 font-medium mb-2">联系电话</label>
+                                <input type="tel" id="phone" name="phone" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="请输入您的联系电话" required>
+                                <p class="form-message mt-1"></p>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="child-grade" class="block text-gray-700 font-medium mb-2">孩子年级</label>
+                                <select id="child-grade" name="child-grade" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" required>
+                                    <option value="">请选择年级</option>
+                                    <option value="小学一年级">小学一年级</option>
+                                    <option value="小学二年级">小学二年级</option>
+                                    <option value="小学三年级">小学三年级</option>
+                                    <option value="小学四年级">小学四年级</option>
+                                    <option value="小学五年级">小学五年级</option>
+                                    <option value="小学六年级">小学六年级</option>
+                                    <option value="初中一年级">初中一年级</option>
+                                    <option value="初中二年级">初中二年级</option>
+                                    <option value="初中三年级">初中三年级</option>
+                                    <option value="高中一年级">高中一年级</option>
+                                    <option value="高中二年级">高中二年级</option>
+                                    <option value="高中三年级">高中三年级</option>
+                                </select>
+                                <p class="form-message mt-1"></p>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">辅导科目</label>
+                                <select id="subject" name="subject" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" required>
+                                    <option value="">请选择科目</option>
+                                    <option value="语文">语文</option>
+                                    <option value="数学">数学</option>
+                                    <option value="英语">英语</option>
+                                    <option value="物理">物理</option>
+                                    <option value="化学">化学</option>
+                                    <option value="生物">生物</option>
+                                    <option value="历史">历史</option>
+                                    <option value="地理">地理</option>
+                                    <option value="政治">政治</option>
+                                </select>
+                                <p class="form-message mt-1"></p>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">留言</label>
+                                <textarea id="message" name="message" rows="4" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="请简要描述您孩子的学习情况和需求"></textarea>
+                                <p class="form-message mt-1"></p>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <button type="submit" id="submit-button" class="submit-button bg-primary text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-blue-800 transition-all-300">
+                                    <span>提交</span>
+                                    <div class="loader ml-2 inline-block"></div>
+                                </button>
+                            </div>
+                            
+                            <div class="success-animation mt-6">
+                                <i class="fa fa-check-circle"></i>
+                                <p class="mt-2 text-green-600 font-medium">提交成功！我们将尽快与您联系。</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/53e1dab9b74e45b0932c26774f158f39~tplv-a9rns2rl98-image.image?rcl=2025111816231218D410E0003EC817B64B&rk3s=8e244e95&rrcfp=f06b921b&x-expires=1766046245&x-signature=vWZrfntsHTTff77aRHTS%2BCnBUpo%3D" alt="新思想教育" class="h-10">
+                        <h3 class="ml-3 text-xl font-bold">新思想教育</h3>
+                    </div>
+                    <p class="text-gray-400 mb-6">专业的家教服务，为孩子提供个性化学习方案，激发学习潜能。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-all-300">
+                            <i class="fa fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all-300">
+                            <i class="fa fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all-300">
+                            <i class="fa fa-qq text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">快速链接</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-all-300">首页</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-all-300">关于我们</a></li>
+                        <li><a href="#courses" class="text-gray-400 hover:text-white transition-all-300">课程体系</a></li>
+                        <li><a href="#teachers" class="text-gray-400 hover:text-white transition-all-300">师资力量</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-all-300">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">课程分类</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all-300">小学课程</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all-300">初中课程</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all-300">高中课程</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all-300">一对一辅导</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all-300">小班教学</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">联系方式</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-400">北京市海淀区中关村大街1号</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-phone text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-400">19231146617（微信同号）</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-envelope text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-400">1953419050@qq.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2025 新思想教育. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 z-50">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // 初始化AOS动画库
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+            
+            // 移动端菜单切换
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuToggle.addEventListener('click', function() {
+                if (mobileMenu.classList.contains('invisible')) {
+                    mobileMenu.classList.remove('invisible', '-translate-y-full', 'opacity-0');
+                    mobileMenu.classList.add('translate-y-0', 'opacity-100');
+                    menuToggle.innerHTML = '<i class="fa fa-times text-2xl"></i>';
+                } else {
+                    mobileMenu.classList.add('-translate-y-full', 'opacity-0');
+                    mobileMenu.classList.remove('translate-y-0', 'opacity-100');
+                    
+                    // 添加延迟以等待过渡完成
+                    setTimeout(() => {
+                        mobileMenu.classList.add('invisible');
+                    }, 300);
+                    
+                    menuToggle.innerHTML = '<i class="fa fa-bars text-2xl"></i>';
+                }
+            });
+            
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // 关闭移动端菜单（如果打开）
+                        if (!mobileMenu.classList.contains('invisible')) {
+                            mobileMenu.classList.add('-translate-y-full', 'opacity-0');
+                            mobileMenu.classList.remove('translate-y-0', 'opacity-100');
+                            
+                            setTimeout(() => {
+                                mobileMenu.classList.add('invisible');
+                            }, 300);
+                            
+                            menuToggle.innerHTML = '<i class="fa fa-bars text-2xl"></i>';
+                        }
+                        
+                        // 滚动到目标位置
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 返回顶部按钮
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.add('opacity-0');
+                    backToTopButton.classList.remove('opacity-100');
+                    
+                    setTimeout(() => {
+                        if (window.pageYOffset <= 300) {
+                            backToTopButton.classList.add('invisible');
+                            backToTopButton.classList.remove('visible');
+                        }
+                    }, 300);
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 表单验证和提交
+            const contactForm = document.getElementById('contact-form');
+            const submitButton = document.getElementById('submit-button');
+            const loader = submitButton.querySelector('.loader');
+            const successAnimation = document.querySelector('.success-animation');
+            
+            // 初始化EmailJS
+            // 请按照以下步骤获取您的EmailJS配置信息：
+            // 1. 访问https://www.emailjs.com/注册账号
+            // 2. 添加邮件服务（如Gmail、QQ邮箱等）
+            // 3. 创建邮件模板
+            // 4. 在Account > API Keys中获取您的Public Key（用户ID）
+            emailjs.init('user_your_user_id'); // 替换为您的EmailJS用户ID（Public Key）
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // 简单表单验证
+                let isValid = true;
+                
+                // 验证姓名
+                const nameInput = document.getElementById('name');
+                const nameMessage = nameInput.nextElementSibling;
+                
+                if (nameInput.value.trim() === '') {
+                    nameInput.classList.add('error');
+                    nameMessage.textContent = '请输入您的姓名';
+                    nameMessage.classList.add('error');
+                    isValid = false;
+                } else {
+                    nameInput.classList.remove('error');
+                    nameInput.classList.add('success');
+                    nameMessage.textContent = '';
+                    nameMessage.classList.remove('error');
+                }
+                
+                // 验证电话
+                const phoneInput = document.getElementById('phone');
+                const phoneMessage = phoneInput.nextElementSibling;
+                const phoneRegex = /^1[3-9]\d{9}$/;
+                
+                if (!phoneRegex.test(phoneInput.value.trim())) {
+                    phoneInput.classList.add('error');
+                    phoneMessage.textContent = '请输入有效的手机号码';
+                    phoneMessage.classList.add('error');
+                    isValid = false;
+                } else {
+                    phoneInput.classList.remove('error');
+                    phoneInput.classList.add('success');
+                    phoneMessage.textContent = '';
+                    phoneMessage.classList.remove('error');
+                }
+                
+                // 验证年级
+                const gradeInput = document.getElementById('child-grade');
+                const gradeMessage = gradeInput.nextElementSibling;
+                
+                if (gradeInput.value === '') {
+                    gradeInput.classList.add('error');
+                    gradeMessage.textContent = '请选择年级';
+                    gradeMessage.classList.add('error');
+                    isValid = false;
+                } else {
+                    gradeInput.classList.remove('error');
+                    gradeInput.classList.add('success');
+                    gradeMessage.textContent = '';
+                    gradeMessage.classList.remove('error');
+                }
+                
+                // 验证科目
+                const subjectInput = document.getElementById('subject');
+                const subjectMessage = subjectInput.nextElementSibling;
+                
+                if (subjectInput.value === '') {
+                    subjectInput.classList.add('error');
+                    subjectMessage.textContent = '请选择科目';
+                    subjectMessage.classList.add('error');
+                    isValid = false;
+                } else {
+                    subjectInput.classList.remove('error');
+                    subjectInput.classList.add('success');
+                    subjectMessage.textContent = '';
+                    subjectMessage.classList.remove('error');
+                }
+                
+                if (!isValid) {
+                    return;
+                }
+                
+                // 显示加载状态
+                submitButton.disabled = true;
+                loader.style.display = 'inline-block';
+                
+                // 收集表单数据
+                const formData = {
+                    name: nameInput.value.trim(),
+                    phone: phoneInput.value.trim(),
+                    child_grade: gradeInput.value,
+                    subject: subjectInput.value,
+                    message: document.getElementById('message').value.trim()
+                };
+                
+                // 发送邮件
+                // 请替换以下参数：
+                // 1. 'service_your_service_id' - 您的EmailJS服务ID
+                // 2. 'template_your_template_id' - 您的EmailJS模板ID
+                // 3. 确保模板中的变量名与formData中的键名一致
+                emailjs.send('service_your_service_id', 'template_your_template_id', {
+                    to_email: '1953419050@qq.com', // 接收邮件的邮箱地址
+                    from_name: formData.name,
+                    phone: formData.phone,
+                    child_grade: formData.child_grade,
+                    subject: formData.subject,
+                    message: formData.message
+                })
+                    .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        
+                        // 显示成功动画
+                        loader.style.display = 'none';
+                        successAnimation.style.display = 'block';
+                        
+                        // 重置表单
+                        contactForm.reset();
+                        
+                        // 清除验证样式
+                        document.querySelectorAll('.form-input').forEach(input => {
+                            input.classList.remove('success');
+                        });
+                        
+                        // 3秒后隐藏成功动画
+                        setTimeout(() => {
+                            successAnimation.style.display = 'none';
+                            submitButton.disabled = false;
+                        }, 3000);
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                        
+                        // 显示错误消息
+                        loader.style.display = 'none';
+                        alert('提交失败，请稍后再试。');
+                        submitButton.disabled = false;
+                    });
+            });
+            
+            // 实时表单验证
+            const formInputs = document.querySelectorAll('.form-input');
+            
+            formInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    const inputValue = this.value.trim();
+                    const messageElement = this.nextElementSibling;
+                    
+                    // 根据不同字段进行验证
+                    switch (this.id) {
+                        case 'name':
+                            if (inputValue === '') {
+                                this.classList.add('error');
+                                messageElement.textContent = '请输入您的姓名';
+                                messageElement.classList.add('error');
+                            } else {
+                                this.classList.remove('error');
+                                this.classList.add('success');
+                                messageElement.textContent = '';
+                                messageElement.classList.remove('error');
+                            }
+                            break;
+                            
+                        case 'phone':
+                            const phoneRegex = /^1[3-9]\d{9}$/;
+                            if (!phoneRegex.test(inputValue)) {
+                                this.classList.add('error');
+                                messageElement.textContent = '请输入有效的手机号码';
+                                messageElement.classList.add('error');
+                            } else {
+                                this.classList.remove('error');
+                                this.classList.add('success');
+                                messageElement.textContent = '';
+                                messageElement.classList.remove('error');
+                            }
+                            break;
+                            
+                        case 'child-grade':
+                            if (inputValue === '') {
+                                this.classList.add('error');
+                                messageElement.textContent = '请选择年级';
+                                messageElement.classList.add('error');
+                            } else {
+                                this.classList.remove('error');
+                                this.classList.add('success');
+                                messageElement.textContent = '';
+                                messageElement.classList.remove('error');
+                            }
+                            break;
+                            
+                        case 'subject':
+                            if (inputValue === '') {
+                                this.classList.add('error');
+                                messageElement.textContent = '请选择科目';
+                                messageElement.classList.add('error');
+                            } else {
+                                this.classList.remove('error');
+                                this.classList.add('success');
+                                messageElement.textContent = '';
+                                messageElement.classList.remove('error');
+                            }
+                            break;
+                    }
+                });
+                
+                input.addEventListener('focus', function() {
+                    this.classList.remove('error', 'success');
+                    const messageElement = this.nextElementSibling;
+                    messageElement.textContent = '';
+                    messageElement.classList.remove('error', 'success');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

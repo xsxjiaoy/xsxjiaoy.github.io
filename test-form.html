@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单提交测试 - 新思想教育</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- EmailJS Library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#f97316',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        .form-input:focus {
+            border-color: #1e40af;
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.2);
+        }
+        
+        .form-input.error {
+            border-color: #ef4444;
+        }
+        
+        .form-input.success {
+            border-color: #22c55e;
+        }
+        
+        .form-message {
+            display: none;
+        }
+        
+        .form-message.error {
+            display: block;
+            color: #ef4444;
+        }
+        
+        .form-message.success {
+            display: block;
+            color: #22c55e;
+        }
+        
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #1e40af;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .success-animation {
+            display: none;
+            text-align: center;
+        }
+        
+        .success-animation i {
+            font-size: 48px;
+            color: #22c55e;
+            animation: scaleIn 0.5s ease-in-out;
+        }
+        
+        @keyframes scaleIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-xl p-8 max-w-md w-full">
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold text-primary mb-2">表单提交测试</h1>
+            <p class="text-gray-600">测试表单是否能正常发送邮件到 1953419050@qq.com</p>
+        </div>
+        
+        <form id="test-form">
+            <div class="mb-6">
+                <label for="name" class="block text-gray-700 font-medium mb-2">家长姓名</label>
+                <input type="text" id="name" name="name" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="请输入您的姓名" required>
+                <p class="form-message mt-1"></p>
+            </div>
+            
+            <div class="mb-6">
+                <label for="phone" class="block text-gray-700 font-medium mb-2">联系电话</label>
+                <input type="tel" id="phone" name="phone" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="请输入您的联系电话" required>
+                <p class="form-message mt-1"></p>
+            </div>
+            
+            <div class="mb-6">
+                <label for="child-grade" class="block text-gray-700 font-medium mb-2">孩子年级</label>
+                <select id="child-grade" name="child-grade" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" required>
+                    <option value="">请选择年级</option>
+                    <option value="小学一年级">小学一年级</option>
+                    <option value="小学二年级">小学二年级</option>
+                    <option value="小学三年级">小学三年级</option>
+                    <option value="小学四年级">小学四年级</option>
+                    <option value="小学五年级">小学五年级</option>
+                    <option value="小学六年级">小学六年级</option>
+                    <option value="初中一年级">初中一年级</option>
+                    <option value="初中二年级">初中二年级</option>
+                    <option value="初中三年级">初中三年级</option>
+                    <option value="高中一年级">高中一年级</option>
+                    <option value="高中二年级">高中二年级</option>
+                    <option value="高中三年级">高中三年级</option>
+                </select>
+                <p class="form-message mt-1"></p>
+            </div>
+            
+            <div class="mb-6">
+                <label for="subject" class="block text-gray-700 font-medium mb-2">辅导科目</label>
+                <select id="subject" name="subject" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" required>
+                    <option value="">请选择科目</option>
+                    <option value="语文">语文</option>
+                    <option value="数学">数学</option>
+                    <option value="英语">英语</option>
+                    <option value="物理">物理</option>
+                    <option value="化学">化学</option>
+                    <option value="生物">生物</option>
+                    <option value="历史">历史</option>
+                    <option value="地理">地理</option>
+                    <option value="政治">政治</option>
+                </select>
+                <p class="form-message mt-1"></p>
+            </div>
+            
+            <div class="mb-6">
+                <label for="message" class="block text-gray-700 font-medium mb-2">留言</label>
+                <textarea id="message" name="message" rows="4" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="请简要描述您孩子的学习情况和需求"></textarea>
+                <p class="form-message mt-1"></p>
+            </div>
+            
+            <div class="mb-6">
+                <label class="block text-gray-700 font-medium mb-2">EmailJS 配置（测试用）</label>
+                <div class="grid grid-cols-1 gap-4">
+                    <div>
+                        <input type="text" id="emailjs-user-id" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none text-sm" placeholder="EmailJS 用户ID（Public Key）" value="user_your_user_id">
+                    </div>
+                    <div>
+                        <input type="text" id="emailjs-service-id" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none text-sm" placeholder="EmailJS 服务ID" value="service_your_service_id">
+                    </div>
+                    <div>
+                        <input type="text" id="emailjs-template-id" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none text-sm" placeholder="EmailJS 模板ID" value="template_your_template_id">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center justify-between">
+                <button type="submit" id="submit-button" class="bg-primary text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-blue-800 transition-all-300">
+                    <span>提交测试</span>
+                    <div class="loader ml-2 inline-block"></div>
+                </button>
+            </div>
+            
+            <div class="success-animation mt-6">
+                <i class="fa fa-check-circle"></i>
+                <p class="mt-2 text-green-600 font-medium">提交成功！请检查您的邮箱 1953419050@qq.com</p>
+            </div>
+            
+            <div id="error-message" class="mt-6 text-center text-red-600 font-medium hidden"></div>
+            
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <h3 class="text-lg font-medium text-primary mb-4">配置说明</h3>
+                <p class="text-sm text-gray-600 mb-4">请先完成 EmailJS 配置，然后在此页面测试表单提交功能。</p>
+                <a href="EMAILJS_SETUP.md" target="_blank" class="inline-flex items-center text-primary hover:underline">
+                    <i class="fa fa-file-text-o mr-2"></i>
+                    查看详细配置指南
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const testForm = document.getElementById('test-form');
+            const submitButton = document.getElementById('submit-button');
+            const loader = submitButton.querySelector('.loader');
+            const successAnimation = document.querySelector('.success-animation');
+            const errorMessage = document.getElementById('error-message');
+            
+            testForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // 获取 EmailJS 配置
+                const userId = document.getElementById('emailjs-user-id').value;
+                const serviceId = document.getElementById('emailjs-service-id').value;
+                const templateId = document.getElementById('emailjs-template-id').value;
+                
+                // 简单表单验证
+                let isValid = true;
+                
+                // 验证姓名
+                const nameInput = document.getElementById('name');
+                const nameMessage = nameInput.nextElementSibling;
+                
+                if (nameInput.value.trim() === '') {
+                    nameInput.classList.add('error');
+                    nameMessage.textContent = '请输入您的姓名';
+                    nameMessage.classList.add('error');
+                    isValid = false;
+                } else {
+                    nameInput.classList.remove('error');
+                    nameInput.classList.add('success');
+                    nameMessage.textContent = '';
+                    nameMessage.classList.remove('error');
+                }
+                
+                // 验证电话
+                const phoneInput = document.getElementById('phone');
+                const phoneMessage = phoneInput.nextElementSibling;
+                const phoneRegex = /^1[3-9]\d{9}$/;
+                
+                if (!phoneRegex.test(phoneInput.value.trim())) {
+                    phoneInput.classList.add('error');
+                    phoneMessage.textContent = '请输入有效的手机号码';
+                    phoneMessage.classList.add('error');
+                    isValid = false;
+                } else {
+                    phoneInput.classList.remove('error');
+                    phoneInput.classList.add('success');
+                    phoneMessage.textContent = '';
+                    phoneMessage.classList.remove('error');
+                }
+                
+                // 验证年级
+                const gradeInput = document.getElementById('child-grade');
+                const gradeMessage = gradeInput.nextElementSibling;
+                
+                if (gradeInput.value === '') {
+                    gradeInput.classList.add('error');
+                    gradeMessage.textContent = '请选择年级';
+                    gradeMessage.classList.add('error');
+                    isValid = false;
+                } else {
+                    gradeInput.classList.remove('error');
+                    gradeInput.classList.add('success');
+                    gradeMessage.textContent = '';
+                    gradeMessage.classList.remove('error');
+                }
+                
+                // 验证科目
+                const subjectInput = document.getElementById('subject');
+                const subjectMessage = subjectInput.nextElementSibling;
+                
+                if (subjectInput.value === '') {
+                    subjectInput.classList.add('error');
+                    subjectMessage.textContent = '请选择科目';
+                    subjectMessage.classList.add('error');
+                    isValid = false;
+                } else {
+                    subjectInput.classList.remove('error');
+                    subjectInput.classList.add('success');
+                    subjectMessage.textContent = '';
+                    subjectMessage.classList.remove('error');
+                }
+                
+                // 验证 EmailJS 配置
+                if (userId === 'user_your_user_id' || serviceId === 'service_your_service_id' || templateId === 'template_your_template_id') {
+                    alert('请先完成 EmailJS 配置，替换所有占位符！');
+                    return;
+                }
+                
+                if (!isValid) {
+                    return;
+                }
+                
+                // 显示加载状态
+                submitButton.disabled = true;
+                loader.style.display = 'inline-block';
+                errorMessage.classList.add('hidden');
+                
+                // 初始化 EmailJS
+                emailjs.init(userId);
+                
+                // 收集表单数据
+                const formData = {
+                    name: nameInput.value.trim(),
+                    phone: phoneInput.value.trim(),
+                    child_grade: gradeInput.value,
+                    subject: subjectInput.value,
+                    message: document.getElementById('message').value.trim()
+                };
+                
+                // 发送邮件
+                emailjs.send(serviceId, templateId, {
+                    to_email: '1953419050@qq.com', // 接收邮件的邮箱地址
+                    from_name: formData.name,
+                    phone: formData.phone,
+                    child_grade: formData.child_grade,
+                    subject: formData.subject,
+                    message: formData.message
+                })
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // 显示成功动画
+                    loader.style.display = 'none';
+                    successAnimation.style.display = 'block';
+                    
+                    // 重置表单
+                    testForm.reset();
+                    
+                    // 清除验证样式
+                    document.querySelectorAll('.form-input').forEach(input => {
+                        input.classList.remove('success', 'error');
+                    });
+                    
+                    // 3秒后隐藏成功动画
+                    setTimeout(() => {
+                        successAnimation.style.display = 'none';
+                        submitButton.disabled = false;
+                    }, 3000);
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    
+                    // 显示错误消息
+                    loader.style.display = 'none';
+                    errorMessage.textContent = `提交失败: ${error.text}`;
+                    errorMessage.classList.remove('hidden');
+                    submitButton.disabled = false;
+                });
+            });
+            
+            // 实时表单验证
+            const formInputs = document.querySelectorAll('.form-input');
+            
+            formInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    const inputValue = this.value.trim();
+                    const messageElement = this.nextElementSibling;
+                    
+                    // 跳过 EmailJS 配置字段
+                    if (this.id === 'emailjs-user-id' || this.id === 'emailjs-service-id' || this.id === 'emailjs-template-id') {
+                        return;
+                    }
+                    
+                    // 根据不同字段进行验证
+                    switch (this.id) {
+                        case 'name':
+                            if (inputValue === '') {
+                                this.classList.add('error');
+                                messageElement.textContent = '请输入您的姓名';
+                                messageElement.classList.add('error');
+                            } else {
+                                this.classList.remove('error');
+                                this.classList.add('success');
+                                messageElement.textContent = '';
+                                messageElement.classList.remove('error');
+                            }
+                            break;
+                            
+                        case 'phone':
+                            const phoneRegex = /^1[3-9]\d{9}$/;
+                            if (!phoneRegex.test(inputValue)) {
+                                this.classList.add('error');
+                                messageElement.textContent = '请输入有效的手机号码';
+                                messageElement.classList.add('error');
+                            } else {
+                                this.classList.remove('error');
+                                this.classList.add('success');
+                                messageElement.textContent = '';
+                                messageElement.classList.remove('error');
+                            }
+                            break;
+                            
+                        case 'child-grade':
+                            if (inputValue === '') {
+                                this.classList.add('error');
+                                messageElement.textContent = '请选择年级';
+                                messageElement.classList.add('error');
+                            } else {
+                                this.classList.remove('error');
+                                this.classList.add('success');
+                                messageElement.textContent = '';
+                                messageElement.classList.remove('error');
+                            }
+                            break;
+                            
+                        case 'subject':
+                            if (inputValue === '') {
+                                this.classList.add('error');
+                                messageElement.textContent = '请选择科目';
+                                messageElement.classList.add('error');
+                            } else {
+                                this.classList.remove('error');
+                                this.classList.add('success');
+                                messageElement.textContent = '';
+                                messageElement.classList.remove('error');
+                            }
+                            break;
+                    }
+                });
+                
+                input.addEventListener('focus', function() {
+                    this.classList.remove('error', 'success');
+                    const messageElement = this.nextElementSibling;
+                    if (messageElement) {
+                        messageElement.textContent = '';
+                        messageElement.classList.remove('error', 'success');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

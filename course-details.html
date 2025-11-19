@@ -1,0 +1,1904 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课程详情与价格 - 新思想教育</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#f97316',
+                        light: '#f8fafc',
+                        dark: '#0f172a'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .transition-all-300 {
+                transition: all 0.3s ease;
+            }
+            .bg-gradient-primary {
+                background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            }
+            .bg-gradient-secondary {
+                background: linear-gradient(135deg, #f97316 0%, #fdba74 100%);
+            }
+        }
+        
+        /* 自定义样式 */
+        .hero-section {
+            background-image: linear-gradient(rgba(30, 64, 175, 0.8), rgba(30, 64, 175, 0.8)), url('https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/458b371532074c509f06d22c470425db~tplv-a9rns2rl98-image.image?rcl=2025111816231218D410E0003EC817B64B&rk3s=8e244e95&rrcfp=f06b921b&x-expires=1766046246&x-signature=zn%2B%2FuDLIoJ3Ix2UwjAVBFjrp9Ac%3D');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .course-tab.active {
+            color: #1e40af;
+            border-bottom: 2px solid #1e40af;
+        }
+        
+        .course-content {
+            display: none;
+        }
+        
+        .course-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .price-card {
+            transition: all 0.3s ease;
+        }
+        
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .teacher-card {
+            transition: all 0.3s ease;
+        }
+        
+        .teacher-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .teacher-type-tab.active {
+            color: #1e40af;
+            border-bottom: 2px solid #1e40af;
+        }
+        
+        .teacher-content {
+            display: none;
+        }
+        
+        .teacher-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/53e1dab9b74e45b0932c26774f158f39~tplv-a9rns2rl98-image.image?rcl=2025111816231218D410E0003EC817B64B&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1766046245&amp;x-signature=vWZrfntsHTTff77aRHTS%2BCnBUpo%3D" alt="新思想教育" class="h-12">
+                <h1 class="ml-3 text-xl font-bold text-primary">新思想教育</h1>
+            </div>
+            
+            <!-- 桌面导航 -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html#home" class="text-gray-700 hover:text-primary transition-all-300">首页</a>
+                <a href="index.html#about" class="text-gray-700 hover:text-primary transition-all-300">关于我们</a>
+                <a href="index.html#courses" class="text-gray-700 hover:text-primary transition-all-300">课程体系</a>
+                <a href="course-details.html" class="text-primary font-medium transition-all-300">课程详情</a>
+                <a href="index.html#teachers" class="text-gray-700 hover:text-primary transition-all-300">师资力量</a>
+                <a href="index.html#contact" class="text-gray-700 hover:text-primary transition-all-300">联系我们</a>
+                <a href="index.html#form" class="bg-secondary text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-all-300">免费咨询</a>
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+                    <i class="fa fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden bg-white shadow-lg absolute w-full left-0 top-full transform -translate-y-full opacity-0 transition-all duration-300 invisible">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="index.html#home" class="text-gray-700 hover:text-primary py-2 transition-all-300">首页</a>
+                <a href="index.html#about" class="text-gray-700 hover:text-primary py-2 transition-all-300">关于我们</a>
+                <a href="index.html#courses" class="text-gray-700 hover:text-primary py-2 transition-all-300">课程体系</a>
+                <a href="course-details.html" class="text-primary font-medium py-2 transition-all-300">课程详情</a>
+                <a href="index.html#teachers" class="text-gray-700 hover:text-primary py-2 transition-all-300">师资力量</a>
+                <a href="index.html#contact" class="text-gray-700 hover:text-primary py-2 transition-all-300">联系我们</a>
+                <a href="index.html#form" class="bg-secondary text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-all-300 text-center">免费咨询</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero-section min-h-screen flex items-center pt-16">
+        <div class="container mx-auto px-4 py-16">
+            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 text-shadow">课程详情与价格</h1>
+                <p class="text-xl md:text-2xl text-white mb-10 text-shadow">了解我们的课程详情和价格，选择最适合您孩子的学习方案</p>
+                <div class="flex flex-col md:flex-row justify-center gap-4">
+                    <a href="#course-prices" class="bg-secondary text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-orange-600 transition-all-300">课程价格</a>
+                    <a href="#teacher-types" class="bg-white text-primary px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-100 transition-all-300">教师类型</a>
+                </div>
+            </div>
+            
+            <!-- 艺术生课程内容 -->
+            <div id="art-student" class="course-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 套餐1：艺术生文化课冲刺 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-primary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">文化课冲刺套餐</h3>
+                            <p class="text-sm mb-4">适合艺术生快速提升文化课成绩</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥120</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专职教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥180</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">艺术生文化课教学经验丰富</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">大学生家教</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥130</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">985院校学生，艺术生背景优先</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>文化课重点突破</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>高考考点精讲</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>时间管理指导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>应试技巧培训</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>个性化学习计划</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 套餐2：美术专业培训 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-secondary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">美术专业培训</h3>
+                            <p class="text-sm mb-4">适合美术特长生专业提升</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥150</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专业教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥220</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">美院毕业，多年教学经验</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">美院研究生</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥170</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">美院研究生，有教学经验</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>素描基础训练</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>色彩静物写生</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>速写技巧提升</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>创作思路指导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>作品集准备</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 套餐3：音乐专业培训 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-gradient-primary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">音乐专业培训</h3>
+                            <p class="text-sm mb-4">适合音乐特长生专业提升</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥180</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专业教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥260</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">音乐学院毕业，演奏家级别</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">音乐学院研究生</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥200</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">音乐学院研究生，教学经验丰富</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>乐器演奏技巧</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>乐理知识教学</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>视唱练耳训练</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>音乐表现力培养</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>考试曲目指导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>舞台表演技巧</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 课程价格 -->
+    <section id="course-prices" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">课程价格</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">我们提供多种课程套餐，满足不同学生的学习需求。所有课程均有专职教师和大学生家教两种选择，价格不同。价格仅供参考具体会根据不同地区有浮动</p>
+            </div>
+            
+            <!-- 课程类型标签 -->
+            <div class="flex flex-wrap justify-center mb-12" data-aos="fade-up">
+                <button class="course-tab active px-6 py-3 text-lg font-medium mx-2 mb-4" data-tab="primary-school">小学课程</button>
+                <button class="course-tab px-6 py-3 text-lg font-medium mx-2 mb-4" data-tab="middle-school">初中课程</button>
+                <button class="course-tab px-6 py-3 text-lg font-medium mx-2 mb-4" data-tab="high-school">高中课程</button>
+                <button class="course-tab px-6 py-3 text-lg font-medium mx-2 mb-4" data-tab="art-student">艺术生课程</button>
+            </div>
+            
+            <!-- 小学课程内容 -->
+            <div id="primary-school" class="course-content active">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 套餐1 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-primary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">基础套餐</h3>
+                            <p class="text-sm mb-4">适合学习基础较好的学生</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥80</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专职教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥120</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">5年以上教学经验，专业教师资质</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">大学生家教</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥80</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">985/211院校学生，相关专业</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>单科目辅导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>基础知识点巩固</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>每周1-2次课</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>月度学习报告</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 套餐2 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-secondary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">进阶套餐</h3>
+                            <p class="text-sm mb-4">适合需要提升的学生</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥100</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专职教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥150</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">8年以上教学经验，专业教师资质</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">大学生家教</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥100</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">985院校学生，有教学经验</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>1-2科目辅导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>重难点突破</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>每周2-3次课</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>双周学习报告</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>学习方法指导</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 套餐3 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-gradient-primary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">精英套餐</h3>
+                            <p class="text-sm mb-4">适合需要全面提升的学生</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥150</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专职教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥200</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">10年以上教学经验，教研组长</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">大学生家教</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥150</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">名牌大学研究生，教学经验丰富</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>全科目辅导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>全面能力提升</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>每周3-5次课</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>周度学习报告</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>个性化学习计划</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>家长定期沟通</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 初中课程内容 -->
+            <div id="middle-school" class="course-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 套餐1 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-primary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">基础套餐</h3>
+                            <p class="text-sm mb-4">适合学习基础较好的学生</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥100</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专职教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥150</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">5年以上教学经验，专业教师资质</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">大学生家教</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥100</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">985/211院校学生，相关专业</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>单科目辅导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>基础知识点巩固</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>每周1-2次课</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>月度学习报告</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 套餐2 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-secondary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">进阶套餐</h3>
+                            <p class="text-sm mb-4">适合需要提升的学生</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥130</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专职教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥180</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">8年以上教学经验，专业教师资质</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">大学生家教</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥130</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">985院校学生，有教学经验</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>1-2科目辅导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>重难点突破</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>每周2-3次课</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>双周学习报告</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>学习方法指导</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 套餐3 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-gradient-primary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">精英套餐</h3>
+                            <p class="text-sm mb-4">适合需要全面提升的学生</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥180</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专职教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥230</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">10年以上教学经验，教研组长</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">大学生家教</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥180</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">名牌大学研究生，教学经验丰富</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>全科目辅导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>全面能力提升</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>每周3-5次课</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>周度学习报告</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>个性化学习计划</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>家长定期沟通</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 高中课程内容 -->
+            <div id="high-school" class="course-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 套餐1 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-primary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">基础套餐</h3>
+                            <p class="text-sm mb-4">适合学习基础较好的学生</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥120</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专职教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥180</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">5年以上教学经验，专业教师资质</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">大学生家教</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥120</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">985/211院校学生，相关专业</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>单科目辅导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>基础知识点巩固</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>每周1-2次课</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>月度学习报告</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 套餐2 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-secondary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">进阶套餐</h3>
+                            <p class="text-sm mb-4">适合需要提升的学生</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥150</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专职教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥200</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">8年以上教学经验，专业教师资质</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">大学生家教</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥150</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">985院校学生，有教学经验</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>1-2科目辅导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>重难点突破</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>每周2-3次课</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>双周学习报告</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>学习方法指导</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 套餐3 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-gradient-primary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">精英套餐</h3>
+                            <p class="text-sm mb-4">适合需要全面提升的学生</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥200</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专职教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥260</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">10年以上教学经验，教研组长</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">大学生家教</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥200</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">名牌大学研究生，教学经验丰富</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>全科目辅导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>全面能力提升</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>每周3-5次课</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>周度学习报告</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>个性化学习计划</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>家长定期沟通</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 艺术生课程内容 -->
+            <div id="art-student" class="course-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 套餐1：艺术生文化课冲刺 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-primary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">文化课冲刺套餐</h3>
+                            <p class="text-sm mb-4">适合艺术生快速提升文化课成绩</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥120</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专职教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥180</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">艺术生文化课教学经验丰富</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">大学生家教</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥130</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">985院校学生，艺术生背景优先</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>文化课重点突破</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>高考考点精讲</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>时间管理指导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>应试技巧培训</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>个性化学习计划</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 套餐2：美术专业培训 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-secondary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">美术专业培训</h3>
+                            <p class="text-sm mb-4">适合美术特长生专业提升</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥150</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专业教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥220</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">美院毕业，多年教学经验</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">美院研究生</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥170</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">美院研究生，有教学经验</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>素描基础训练</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>色彩静物写生</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>速写技巧提升</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>创作思路指导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>作品集准备</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 套餐3：音乐专业培训 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-gradient-primary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">音乐专业培训</h3>
+                            <p class="text-sm mb-4">适合音乐特长生专业提升</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥180</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专业教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥260</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">音乐学院毕业，演奏家级别</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">音乐学院研究生</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥200</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">音乐学院研究生，教学经验丰富</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>乐器演奏技巧</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>乐理知识教学</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>视唱练耳训练</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>音乐表现力培养</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>考试曲目指导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>舞台表演技巧</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教师类型 -->
+    <section id="teacher-types" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">教师类型</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">我们提供两种类型的教师：专职教师和大学生家教。您可以根据孩子的需求和预算选择合适的教师类型。</p>
+            </div>
+            
+            <!-- 教师类型标签 -->
+            <div class="flex flex-wrap justify-center mb-12" data-aos="fade-up">
+                <button class="teacher-type-tab active px-6 py-3 text-lg font-medium mx-2 mb-4" data-tab="professional-teachers">专职教师</button>
+                <button class="teacher-type-tab px-6 py-3 text-lg font-medium mx-2 mb-4" data-tab="college-students">大学生家教</button>
+            </div>
+            
+            <!-- 专职教师内容 -->
+            <div id="professional-teachers" class="teacher-content active">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+                    <div data-aos="fade-right">
+                        <img src="https://p3-doubao-search-sign.byteimg.com/labis/be1b3e6f22010d34efc6d5164796a70b~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=RFtFrELzZ5E%2FLA4Jmzjcz%2Bwb1Ck%3D" alt="专职教师" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    
+                    <div data-aos="fade-left">
+                        <h3 class="text-2xl font-bold text-primary mb-6">专职教师优势</h3>
+                        <p class="text-gray-700 mb-6">我们的专职教师均经过严格筛选，具有丰富的教学经验和专业的教学资质，能够为学生提供高质量的教学服务。</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-primary text-white rounded-full p-2 mr-4">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">丰富教学经验</h4>
+                                    <p class="text-gray-600">平均5年以上教学经验，熟悉各年龄段学生的学习特点和需求</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary text-white rounded-full p-2 mr-4">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">专业教学资质</h4>
+                                    <p class="text-gray-600">持有教师资格证，专业知识扎实，教学方法科学有效</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary text-white rounded-full p-2 mr-4">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">系统教学体系</h4>
+                                    <p class="text-gray-600">拥有完善的教学体系和教学资源，能够为学生提供系统的知识讲解</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary text-white rounded-full p-2 mr-4">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">个性化教学方案</h4>
+                                    <p class="text-gray-600">能够根据学生的学习情况和需求，制定个性化的教学方案</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 专职教师展示 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- 教师卡片 1 -->
+                    <div class="teacher-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-be4g95zd3a/1048492381446995975~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=%2FJowc%2B7cLe7YEJR407JFV56mKE0%3D" alt="张老师" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-primary">张老师</h3>
+                            <p class="text-gray-600 mb-2">数学教研组长</p>
+                            <p class="text-sm text-gray-500 mb-3">10年教学经验，数学思维训练专家</p>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <span class="text-gray-600 ml-2 text-sm">5.0</span>
+                            </div>
+                            <a href="index.html#form" class="inline-block bg-primary text-white px-4 py-2 rounded-full text-sm hover:bg-blue-800 transition-all-300">预约咨询</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 教师卡片 2 -->
+                    <div class="teacher-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://p3-doubao-search-sign.byteimg.com/labis/image/7bb1db1345dd89b8a3a398053d940b76~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=JLTn7PCnzBBUZ2PWSaYngtVeOtg%3D" alt="李老师" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-primary">李老师</h3>
+                            <p class="text-gray-600 mb-2">语文教师</p>
+                            <p class="text-sm text-gray-500 mb-3">8年教学经验，汉语言文学硕士</p>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <span class="text-gray-600 ml-2 text-sm">4.8</span>
+                            </div>
+                            <a href="index.html#form" class="inline-block bg-primary text-white px-4 py-2 rounded-full text-sm hover:bg-blue-800 transition-all-300">预约咨询</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 教师卡片 3 -->
+                    <div class="teacher-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-be4g95zd3a/909314438561923151~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=%2FJADeKsfy9izKF%2BxMxI%2BzriEgKs%3D" alt="王老师" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-primary">王老师</h3>
+                            <p class="text-gray-600 mb-2">英语教师</p>
+                            <p class="text-sm text-gray-500 mb-3">7年教学经验，英语专业八级</p>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                                <span class="text-gray-600 ml-2 text-sm">4.2</span>
+                            </div>
+                            <a href="index.html#form" class="inline-block bg-primary text-white px-4 py-2 rounded-full text-sm hover:bg-blue-800 transition-all-300">预约咨询</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 教师卡片 4 -->
+                    <div class="teacher-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://p3-doubao-search-sign.byteimg.com/tos-cn-i-xv4ileqgde/6b18d767358348dc9f4c95f8207726ae~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=yES3fhyKZe7FzhOEzAcUP0jqRMA%3D" alt="陈老师" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-primary">陈老师</h3>
+                            <p class="text-gray-600 mb-2">物理教师</p>
+                            <p class="text-sm text-gray-500 mb-3">9年教学经验，物理学博士</p>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <span class="text-gray-600 ml-2 text-sm">4.7</span>
+                            </div>
+                            <a href="index.html#form" class="inline-block bg-primary text-white px-4 py-2 rounded-full text-sm hover:bg-blue-800 transition-all-300">预约咨询</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 大学生家教内容 -->
+            <div id="college-students" class="teacher-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+                    <div data-aos="fade-right">
+                        <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-be4g95zd3a/903037300906131553~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=xpfLsQ5CsDMZ6DAU0VXYwfCyce4%3D" alt="大学生家教" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    
+                    <div data-aos="fade-left">
+                        <h3 class="text-2xl font-bold text-primary mb-6">大学生家教优势</h3>
+                        <p class="text-gray-700 mb-6">我们的大学生家教均来自985/211名牌大学，专业知识扎实，能够与学生建立良好的沟通，为学生提供针对性的辅导。</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-primary text-white rounded-full p-2 mr-4">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">名牌大学背景</h4>
+                                    <p class="text-gray-600">均来自985/211名牌大学，学习成绩优异，专业知识扎实</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary text-white rounded-full p-2 mr-4">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">与学生沟通顺畅</h4>
+                                    <p class="text-gray-600">年龄相近，能够与学生建立良好的沟通，了解学生的学习需求</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary text-white rounded-full p-2 mr-4">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">学习方法分享</h4>
+                                    <p class="text-gray-600">能够分享自己的学习经验和方法，帮助学生提高学习效率</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary text-white rounded-full p-2 mr-4">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">价格实惠</h4>
+                                    <p class="text-gray-600">相比专职教师，价格更加实惠，适合预算有限的家庭</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 大学生家教展示 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- 大学生卡片 1 -->
+                    <div class="teacher-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://p3-doubao-search-sign.byteimg.com/labis/image/f5070693bec6d1a6c3cf799c28cc3b37~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=nJXVhMqRUJx%2BM1KuCAeWRJanLow%3D" alt="刘同学" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-primary">刘同学</h3>
+                            <p class="text-gray-600 mb-2">北京大学 数学专业</p>
+                            <p class="text-sm text-gray-500 mb-3">数学竞赛获奖，擅长数学思维训练</p>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <span class="text-gray-600 ml-2 text-sm">4.9</span>
+                            </div>
+                            <a href="index.html#form" class="inline-block bg-primary text-white px-4 py-2 rounded-full text-sm hover:bg-blue-800 transition-all-300">预约咨询</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 大学生卡片 2 -->
+                    <div class="teacher-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://p3-doubao-search-sign.byteimg.com/labis/image/361581421b49943905687430fb099845~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=lll1efQf2eHolD3rGU3qcPXpf2Q%3D" alt="张同学" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-primary">张同学</h3>
+                            <p class="text-gray-600 mb-2">清华大学 英语专业</p>
+                            <p class="text-sm text-gray-500 mb-3">英语专业八级，有海外交流经验</p>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <span class="text-gray-600 ml-2 text-sm">4.6</span>
+                            </div>
+                            <a href="index.html#form" class="inline-block bg-primary text-white px-4 py-2 rounded-full text-sm hover:bg-blue-800 transition-all-300">预约咨询</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 大学生卡片 3 -->
+                    <div class="teacher-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://p3-doubao-search-sign.byteimg.com/tos-cn-i-xv4ileqgde/ae32d06219fb49089bbf6c45d8898321~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=cKcIvo4vpajwutXVMybw2lrAtiY%3D" alt="王同学" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-primary">王同学</h3>
+                            <p class="text-gray-600 mb-2">复旦大学 物理专业</p>
+                            <p class="text-sm text-gray-500 mb-3">物理竞赛获奖，擅长物理概念讲解</p>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                                <span class="text-gray-600 ml-2 text-sm">4.3</span>
+                            </div>
+                            <a href="index.html#form" class="inline-block bg-primary text-white px-4 py-2 rounded-full text-sm hover:bg-blue-800 transition-all-300">预约咨询</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 大学生卡片 4 -->
+                    <div class="teacher-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://p11-doubao-search-sign.byteimg.com/tos-cn-i-be4g95zd3a/1703685725385129989~tplv-be4g95zd3a-image.jpeg?rk3s=542c0f93&amp;x-expires=1779006220&amp;x-signature=MtGucJyApcDhAXKRxI3nBrWPJY8%3D" alt="李同学" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-primary">李同学</h3>
+                            <p class="text-gray-600 mb-2">浙江大学 化学专业</p>
+                            <p class="text-sm text-gray-500 mb-3">化学竞赛获奖，擅长化学实验教学</p>
+                            <div class="flex items-center text-yellow-400 mb-3">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <span class="text-gray-600 ml-2 text-sm">4.7</span>
+                            </div>
+                            <a href="index.html#form" class="inline-block bg-primary text-white px-4 py-2 rounded-full text-sm hover:bg-blue-800 transition-all-300">预约咨询</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 艺术生课程内容 -->
+            <div id="art-student" class="course-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 套餐1：艺术生文化课冲刺 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-primary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">文化课冲刺套餐</h3>
+                            <p class="text-sm mb-4">适合艺术生快速提升文化课成绩</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥120</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专职教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥180</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">艺术生文化课教学经验丰富</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">大学生家教</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥130</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">985院校学生，艺术生背景优先</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>文化课重点突破</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>高考考点精讲</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>时间管理指导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>应试技巧培训</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>个性化学习计划</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 套餐2：美术专业培训 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-secondary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">美术专业培训</h3>
+                            <p class="text-sm mb-4">适合美术特长生专业提升</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥150</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专业教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥220</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">美院毕业，多年教学经验</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">美院研究生</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥170</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">美院研究生，有教学经验</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>素描基础训练</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>色彩静物写生</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>速写技巧提升</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>创作思路指导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>作品集准备</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 套餐3：音乐专业培训 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-gradient-primary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">音乐专业培训</h3>
+                            <p class="text-sm mb-4">适合音乐特长生专业提升</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥180</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专业教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥260</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">音乐学院毕业，演奏家级别</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">音乐学院研究生</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥200</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">音乐学院研究生，教学经验丰富</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>乐器演奏技巧</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>乐理知识教学</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>视唱练耳训练</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>音乐表现力培养</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>考试曲目指导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>舞台表演技巧</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-gradient-primary rounded-lg shadow-xl overflow-hidden" data-aos="fade-up">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="p-8 text-white">
+                        <h2 class="text-3xl font-bold mb-6">立即咨询</h2>
+                        <p class="mb-8">如果您对我们的课程和价格有任何疑问，或者想了解更多信息，请填写以下表单，我们的教育顾问将尽快与您联系。</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-white text-primary rounded-full p-2 mr-4">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <p>专业教育顾问一对一咨询</p>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white text-primary rounded-full p-2 mr-4">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <p>个性化学习方案定制</p>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white text-primary rounded-full p-2 mr-4">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <p>免费试听课体验</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8 bg-white">
+                        <form action="index.html#form" method="get">
+                            <div class="mb-6">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">家长姓名</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" placeholder="请输入您的姓名" required="">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="phone" class="block text-gray-700 font-medium mb-2">联系电话</label>
+                                <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" placeholder="请输入您的联系电话" required="">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">留言</label>
+                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" placeholder="请简要描述您孩子的学习情况和需求"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-blue-800 transition-all-300">立即咨询</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 艺术生课程内容 -->
+            <div id="art-student" class="course-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 套餐1：艺术生文化课冲刺 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-primary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">文化课冲刺套餐</h3>
+                            <p class="text-sm mb-4">适合艺术生快速提升文化课成绩</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥120</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专职教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥180</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">艺术生文化课教学经验丰富</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">大学生家教</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥130</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">985院校学生，艺术生背景优先</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>文化课重点突破</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>高考考点精讲</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>时间管理指导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>应试技巧培训</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>个性化学习计划</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 套餐2：美术专业培训 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-secondary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">美术专业培训</h3>
+                            <p class="text-sm mb-4">适合美术特长生专业提升</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥150</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专业教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥220</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">美院毕业，多年教学经验</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">美院研究生</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥170</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">美院研究生，有教学经验</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>素描基础训练</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>色彩静物写生</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>速写技巧提升</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>创作思路指导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>作品集准备</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 套餐3：音乐专业培训 -->
+                    <div class="price-card bg-white rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-gradient-primary text-white p-6">
+                            <h3 class="text-xl font-bold mb-2">音乐专业培训</h3>
+                            <p class="text-sm mb-4">适合音乐特长生专业提升</p>
+                            <div class="flex items-end">
+                                <span class="text-3xl font-bold">¥180</span>
+                                <span class="text-sm ml-2 mb-1">/小时</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">专业教师</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥260</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">音乐学院毕业，演奏家级别</p>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-bold text-gray-800 mb-2">音乐学院研究生</h4>
+                                <div class="flex items-center">
+                                    <span class="text-2xl font-bold text-primary">¥200</span>
+                                    <span class="text-sm ml-2 text-gray-600">/小时</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">音乐学院研究生，教学经验丰富</p>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>乐器演奏技巧</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>乐理知识教学</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>视唱练耳训练</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>音乐表现力培养</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>考试曲目指导</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fa fa-check text-green-500 mr-2"></i>
+                                    <span>舞台表演技巧</span>
+                                </li>
+                            </ul>
+                            <a href="index.html#form" class="block text-center bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800 transition-all-300">立即报名</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/53e1dab9b74e45b0932c26774f158f39~tplv-a9rns2rl98-image.image?rcl=2025111816231218D410E0003EC817B64B&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1766046245&amp;x-signature=vWZrfntsHTTff77aRHTS%2BCnBUpo%3D" alt="新思想教育" class="h-10">
+                        <h3 class="ml-3 text-xl font-bold">新思想教育</h3>
+                    </div>
+                    <p class="text-gray-400 mb-6">专业的家教服务，为孩子提供个性化学习方案，激发学习潜能。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-all-300">
+                            <i class="fa fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all-300">
+                            <i class="fa fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all-300">
+                            <i class="fa fa-qq text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">快速链接</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html#home" class="text-gray-400 hover:text-white transition-all-300">首页</a></li>
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-white transition-all-300">关于我们</a></li>
+                        <li><a href="index.html#courses" class="text-gray-400 hover:text-white transition-all-300">课程体系</a></li>
+                        <li><a href="course-details.html" class="text-gray-400 hover:text-white transition-all-300">课程详情</a></li>
+                        <li><a href="index.html#teachers" class="text-gray-400 hover:text-white transition-all-300">师资力量</a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white transition-all-300">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">课程分类</h4>
+                    <ul class="space-y-3">
+                        <li><a href="course-details.html#primary-school" class="text-gray-400 hover:text-white transition-all-300">小学课程</a></li>
+                        <li><a href="course-details.html#middle-school" class="text-gray-400 hover:text-white transition-all-300">初中课程</a></li>
+                        <li><a href="course-details.html#high-school" class="text-gray-400 hover:text-white transition-all-300">高中课程</a></li>
+                        <li><a href="course-details.html#professional-teachers" class="text-gray-400 hover:text-white transition-all-300">专职教师</a></li>
+                        <li><a href="course-details.html#college-students" class="text-gray-400 hover:text-white transition-all-300">大学生家教</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">联系方式</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-400">北京市海淀区中关村大街1号</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-phone text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-400">19231146617（微信同号）</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-envelope text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-400">1953419050@qq.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-qrcode text-secondary mt-1 mr-3"></i>
+                            <div>
+                                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/99ed1d193027494995ba5545d462913c.png~tplv-a9rns2rl98-24:720:720.png?rcl=20251118165425127A25488C3CDEF4F326&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1764060866&x-signature=Jsvuac0fW3ZrkRZaMKi8vWDf78c%3D" alt="微信二维码" class="w-24 h-24">
+                                <span class="text-gray-400">扫码添加微信</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">© 2025 新思想教育. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 z-50">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // 初始化AOS动画库
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+            
+            // 移动端菜单切换
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuToggle.addEventListener('click', function() {
+                if (mobileMenu.classList.contains('invisible')) {
+                    mobileMenu.classList.remove('invisible', '-translate-y-full', 'opacity-0');
+                    mobileMenu.classList.add('translate-y-0', 'opacity-100');
+                    menuToggle.innerHTML = '<i class="fa fa-times text-2xl"></i>';
+                } else {
+                    mobileMenu.classList.add('-translate-y-full', 'opacity-0');
+                    mobileMenu.classList.remove('translate-y-0', 'opacity-100');
+                    
+                    // 添加延迟以等待过渡完成
+                    setTimeout(() => {
+                        mobileMenu.classList.add('invisible');
+                    }, 300);
+                    
+                    menuToggle.innerHTML = '<i class="fa fa-bars text-2xl"></i>';
+                }
+            });
+            
+            // 课程标签切换
+            const courseTabs = document.querySelectorAll('.course-tab');
+            const courseContents = document.querySelectorAll('.course-content');
+            
+            courseTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // 移除所有标签的active类
+                    courseTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // 为当前点击的标签添加active类
+                    tab.classList.add('active');
+                    
+                    // 隐藏所有内容
+                    courseContents.forEach(content => content.classList.remove('active'));
+                    
+                    // 显示对应内容
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // 教师类型标签切换
+            const teacherTypeTabs = document.querySelectorAll('.teacher-type-tab');
+            const teacherContents = document.querySelectorAll('.teacher-content');
+            
+            teacherTypeTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // 移除所有标签的active类
+                    teacherTypeTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // 为当前点击的标签添加active类
+                    tab.classList.add('active');
+                    
+                    // 隐藏所有内容
+                    teacherContents.forEach(content => content.classList.remove('active'));
+                    
+                    // 显示对应内容
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // 返回顶部按钮
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.add('opacity-0');
+                    backToTopButton.classList.remove('opacity-100');
+                    
+                    setTimeout(() => {
+                        if (window.pageYOffset <= 300) {
+                            backToTopButton.classList.add('invisible');
+                            backToTopButton.classList.remove('visible');
+                        }
+                    }, 300);
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+
+</body></html>
